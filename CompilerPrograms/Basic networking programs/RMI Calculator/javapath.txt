@@ -1,2 +1,0 @@
-/usr/lib/jvm/jre/bin
-jre or jdk

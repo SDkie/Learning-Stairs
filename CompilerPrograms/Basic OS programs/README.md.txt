@@ -1,1 +1,0 @@
-It consist of basic Operatng System programs like shared-memory,Ring Algorithm, etc
