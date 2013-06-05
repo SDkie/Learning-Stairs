@@ -1,0 +1,31 @@
+ubuntu@ubuntu-Inspiron-3521:~$ cd Desktop/
+ubuntu@ubuntu-Inspiron-3521:~/Desktop$ cd named-pipes/
+ubuntu@ubuntu-Inspiron-3521:~/Desktop/named-pipes$ cc create_fifo.c -o create_fifo
+ubuntu@ubuntu-Inspiron-3521:~/Desktop/named-pipes$ ./create_fifo 
+fifos server and child created successfulyubuntu@ubuntu-Inspiron-3521:~/Desktop/named-pipes$ ls -l
+total 40
+-rw------- 1 ubuntu ubuntu 5928 Feb 27 12:20 client
+-rw------- 1 ubuntu ubuntu  825 Feb 27 12:19 client.c
+-rwxrwxr-x 1 ubuntu ubuntu 7289 Apr  1 10:07 create_fifo
+-rw------- 1 ubuntu ubuntu  400 Feb 27 12:16 create_fifo.c
+prw-rw-r-- 1 ubuntu ubuntu    0 Apr  1 10:07 fifo_client
+prw-rw-r-- 1 ubuntu ubuntu    0 Apr  1 10:07 fifo_server
+-rw------- 1 ubuntu ubuntu 2258 Feb 27 12:28 instructions.txt
+-rw------- 1 ubuntu ubuntu 5565 Feb 27 12:18 server
+-rw------- 1 ubuntu ubuntu  743 Feb 27 12:18 server.c
+ubuntu@ubuntu-Inspiron-3521:~/Desktop/named-pipes$ cc server.c -o server
+ubuntu@ubuntu-Inspiron-3521:~/Desktop/named-pipes$ ./server
+
+ Data sent to client 
+ubuntu@ubuntu-Inspiron-3521:~/Desktop/named-pipes$ ./server
+
+Data sent to client
+ubuntu@ubuntu-Inspiron-3521:~/Desktop/named-pipes$ ^C
+ubuntu@ubuntu-Inspiron-3521:~/Desktop/named-pipes$ ./server
+
+Data sent to client
+ubuntu@ubuntu-Inspiron-3521:~/Desktop/named-pipes$ ./server
+
+Data sent to client
+ubuntu@ubuntu-Inspiron-3521:~/Desktop/named-pipes$ 
+

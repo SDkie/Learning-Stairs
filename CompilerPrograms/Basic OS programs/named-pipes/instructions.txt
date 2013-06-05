@@ -1,0 +1,45 @@
+
+1) cc create_fifo.c -o create_fifo
+
+2) ./create_fifo 
+
+3)If there are no errors, then two fifo should have got created in your current working directory. To confirm this run the command the "ls -l" in your current working directory and you should see some thing like this :
+-rwxrwxr-x. 1 student student 5061 Feb 27 12:17 create_fifo
+-rw-rw-r--. 1 student student  400 Feb 27 12:16 create_fifo.c
+prw-rw-r--. 1 student student    0 Feb 27 12:17 fifo_client
+prw-rw-r--. 1 student student    0 Feb 27 12:17 fifo_server
+If you notice the first column of the row containing fifo_server and fifo_client, you can see the letter "p" which signifies that it is a pipe.
+
+
+4)The code,server.c, reads the choice from fifo_server to which the client writes and depending on the request,the server responds with the relevant data by writing to fifo_client. 
+Save the file and server.c and compile it as follows :
+cc server.c -o server
+
+
+5)The above code,client.c, sends a request to the server by writing to the pipe fifo_server, and recieves the reply from the server by reading the pipe fifo_client.
+Save the file and server.c and compile it as follows :
+cc client.c -o client
+
+
+6)To see the pipe in operation, open two terminals and go the folder where the pipes have been created.
+Terminal 1:
+./server
+The terminal will go into a wait state with the cursor blinking, waiting for request from client. 
+
+Terminal 2: 
+./client 
+The client will prompt to make a choice of request to be sent to the server, enter number 1,2 or 3 
+Choose the request to be sent to server from options below
+  Enter 1 for O.S.Name 
+                 Enter 2.Distribution 
+                 Enter 3.Kernel version
+
+This number will be sent to the server and the client will go into a wait state, waiting for the server to respond.
+After a few seconds you should see the reponse from the server being printed on the client terminal.
+Note: wait for 10 seconds for the output to appear as the server has a sleep for 10 seconds, this is required to allow some time for the client to start its read operation on the fifo_client pipe.
+
+output on client terminal: 
+***Reply from server is debian***
+Ouput on server terminal : 
+Data sent to client
+for eg if we entered option 2, the response would be 

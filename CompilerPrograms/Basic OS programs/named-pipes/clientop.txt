@@ -1,0 +1,36 @@
+ubuntu@ubuntu-Inspiron-3521:~$ cd Desktop/
+ubuntu@ubuntu-Inspiron-3521:~/Desktop$ cd named-pipes/
+ubuntu@ubuntu-Inspiron-3521:~/Desktop/named-pipes$ cc client.c -o client
+ubuntu@ubuntu-Inspiron-3521:~/Desktop/named-pipes$ ./client
+Choose the request to be sent to server from options below
+		 Enter 1 for O.S.Name 
+                 Enter 2 for Distribution 
+                 Enter 3 for Kernel version 
+1
+
+ ***Reply from server is Linux***
+ubuntu@ubuntu-Inspiron-3521:~/Desktop/named-pipes$ ./client
+Choose the request to be sent to server from options below
+		 Enter 1 for O.S.Name 
+                 Enter 2 for Distribution 
+                 Enter 3 for Kernel version 
+2
+^C
+ubuntu@ubuntu-Inspiron-3521:~/Desktop/named-pipes$ ./client
+Choose the request to be sent to server from options below
+		 Enter 1 for O.S.Name 
+                 Enter 2 for Distribution 
+                 Enter 3 for Kernel version 
+2
+
+ ***Reply from server is debian***
+ubuntu@ubuntu-Inspiron-3521:~/Desktop/named-pipes$ ./client
+Choose the request to be sent to server from options below
+		 Enter 1 for O.S.Name 
+                 Enter 2 for Distribution 
+                 Enter 3 for Kernel version 
+3\
+
+ ***Reply from server is 2.6.32***
+ubuntu@ubuntu-Inspiron-3521:~/Desktop/named-pipes$ 
+

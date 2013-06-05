@@ -1,0 +1,34 @@
+%{
+	#include<stdio.h>
+	int a=0;
+	int lineno=0;
+%}
+
+LETTER [a-zA-Z]  
+DIGIT [0-9]  
+
+%%
+\n				printf("\n\nLine Number%4d\t\n", ++lineno);
+# 				printf("\n#- Preprocessor symbol");
+"<"|">"|"{"|"}"|"("|")"     	printf("\n%s - special character",yytext);
+int|float|char			printf("\n int- keyword");
+"/*"				printf("\n \\* start of multi line comment");
+"*/"				printf("\n /* end of multi line comment");
+{LETTER}*".h" 			printf("\n%s - header file",yytext);
+include				printf("\n%s - preprocessor keyword",yytext);
+%%
+
+int main(int argc, char** argv)
+{
+	FILE* file;
+	file=fopen(argv[1],"r");
+	yyin=file;
+	if(file)
+	{
+		printf("Line Number%4d\t\n", 0);
+		yylex();
+	}
+	else 
+		return 0;
+	return 0;
+}

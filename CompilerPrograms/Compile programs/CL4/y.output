@@ -1,0 +1,165 @@
+Grammar
+
+    0 $accept: EXP1 $end
+
+    1 EXP1: EXP
+
+    2 EXP: EXP '+' EXP
+    3    | EXP '-' EXP
+    4    | EXP '*' EXP
+    5    | EXP '/' EXP
+    6    | NO
+
+
+Terminals, with rules where they appear
+
+$end (0) 0
+'*' (42) 4
+'+' (43) 2
+'-' (45) 3
+'/' (47) 5
+error (256)
+NO (258) 6
+
+
+Nonterminals, with rules where they appear
+
+$accept (8)
+    on left: 0
+EXP1 (9)
+    on left: 1, on right: 0
+EXP (10)
+    on left: 2 3 4 5 6, on right: 1 2 3 4 5
+
+
+state 0
+
+    0 $accept: . EXP1 $end
+
+    NO  shift, and go to state 1
+
+    EXP1  go to state 2
+    EXP   go to state 3
+
+
+state 1
+
+    6 EXP: NO .
+
+    $default  reduce using rule 6 (EXP)
+
+
+state 2
+
+    0 $accept: EXP1 . $end
+
+    $end  shift, and go to state 4
+
+
+state 3
+
+    1 EXP1: EXP .
+    2 EXP: EXP . '+' EXP
+    3    | EXP . '-' EXP
+    4    | EXP . '*' EXP
+    5    | EXP . '/' EXP
+
+    '+'  shift, and go to state 5
+    '-'  shift, and go to state 6
+    '*'  shift, and go to state 7
+    '/'  shift, and go to state 8
+
+    $default  reduce using rule 1 (EXP1)
+
+
+state 4
+
+    0 $accept: EXP1 $end .
+
+    $default  accept
+
+
+state 5
+
+    2 EXP: EXP '+' . EXP
+
+    NO  shift, and go to state 1
+
+    EXP  go to state 9
+
+
+state 6
+
+    3 EXP: EXP '-' . EXP
+
+    NO  shift, and go to state 1
+
+    EXP  go to state 10
+
+
+state 7
+
+    4 EXP: EXP '*' . EXP
+
+    NO  shift, and go to state 1
+
+    EXP  go to state 11
+
+
+state 8
+
+    5 EXP: EXP '/' . EXP
+
+    NO  shift, and go to state 1
+
+    EXP  go to state 12
+
+
+state 9
+
+    2 EXP: EXP . '+' EXP
+    2    | EXP '+' EXP .
+    3    | EXP . '-' EXP
+    4    | EXP . '*' EXP
+    5    | EXP . '/' EXP
+
+    '*'  shift, and go to state 7
+    '/'  shift, and go to state 8
+
+    $default  reduce using rule 2 (EXP)
+
+
+state 10
+
+    2 EXP: EXP . '+' EXP
+    3    | EXP . '-' EXP
+    3    | EXP '-' EXP .
+    4    | EXP . '*' EXP
+    5    | EXP . '/' EXP
+
+    '*'  shift, and go to state 7
+    '/'  shift, and go to state 8
+
+    $default  reduce using rule 3 (EXP)
+
+
+state 11
+
+    2 EXP: EXP . '+' EXP
+    3    | EXP . '-' EXP
+    4    | EXP . '*' EXP
+    4    | EXP '*' EXP .
+    5    | EXP . '/' EXP
+
+    $default  reduce using rule 4 (EXP)
+
+
+state 12
+
+    2 EXP: EXP . '+' EXP
+    3    | EXP . '-' EXP
+    4    | EXP . '*' EXP
+    5    | EXP . '/' EXP
+    5    | EXP '/' EXP .
+
+    $default  reduce using rule 5 (EXP)

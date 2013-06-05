@@ -1,0 +1,33 @@
+%{
+
+#include<stdio.h>
+
+%}
+
+%token fo,var,comma,semicolan,ob,cb,inc_dec,val,equal
+
+%%
+for_stat:
+fo ob init semicolan semicolan inc_dec cb {printf("done");}
+|
+fo ob semicolan semicolan cb 		{printf("done");}
+;
+
+init:
+var equal val semicolan		{printf("initialization");}
+|
+var semicolan			{printf("initialization");}		
+;
+
+%%
+
+int yyerror()
+{
+	printf("Error");
+	return 0;
+}
+int main()
+{
+	yyparse();
+	return 0;
+}

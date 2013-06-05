@@ -1,0 +1,193 @@
+   0  $accept : for_stat $end
+
+   1  for_stat : fo ob init semicolan semicolan var cb
+   2           | fo ob init semicolan condition semicolan var inc_dec cb
+   3           | fo ob semicolan semicolan cb
+
+   4  init : var equal val
+   5       | var
+
+   6  condition : var compare val
+   7            | var compare var
+
+state 0
+	$accept : . for_stat $end  (0)
+
+	fo  shift 1
+	.  error
+
+	for_stat  goto 2
+
+
+state 1
+	for_stat : fo . ob init semicolan semicolan var cb  (1)
+	for_stat : fo . ob init semicolan condition semicolan var inc_dec cb  (2)
+	for_stat : fo . ob semicolan semicolan cb  (3)
+
+	ob  shift 3
+	.  error
+
+
+state 2
+	$accept : for_stat . $end  (0)
+
+	$end  accept
+
+
+state 3
+	for_stat : fo ob . init semicolan semicolan var cb  (1)
+	for_stat : fo ob . init semicolan condition semicolan var inc_dec cb  (2)
+	for_stat : fo ob . semicolan semicolan cb  (3)
+
+	var  shift 4
+	semicolan  shift 5
+	.  error
+
+	init  goto 6
+
+
+state 4
+	init : var . equal val  (4)
+	init : var .  (5)
+
+	equal  shift 7
+	semicolan  reduce 5
+
+
+state 5
+	for_stat : fo ob semicolan . semicolan cb  (3)
+
+	semicolan  shift 8
+	.  error
+
+
+state 6
+	for_stat : fo ob init . semicolan semicolan var cb  (1)
+	for_stat : fo ob init . semicolan condition semicolan var inc_dec cb  (2)
+
+	semicolan  shift 9
+	.  error
+
+
+state 7
+	init : var equal . val  (4)
+
+	val  shift 10
+	.  error
+
+
+state 8
+	for_stat : fo ob semicolan semicolan . cb  (3)
+
+	cb  shift 11
+	.  error
+
+
+state 9
+	for_stat : fo ob init semicolan . semicolan var cb  (1)
+	for_stat : fo ob init semicolan . condition semicolan var inc_dec cb  (2)
+
+	var  shift 12
+	semicolan  shift 13
+	.  error
+
+	condition  goto 14
+
+
+state 10
+	init : var equal val .  (4)
+
+	.  reduce 4
+
+
+state 11
+	for_stat : fo ob semicolan semicolan cb .  (3)
+
+	.  reduce 3
+
+
+state 12
+	condition : var . compare val  (6)
+	condition : var . compare var  (7)
+
+	compare  shift 15
+	.  error
+
+
+state 13
+	for_stat : fo ob init semicolan semicolan . var cb  (1)
+
+	var  shift 16
+	.  error
+
+
+state 14
+	for_stat : fo ob init semicolan condition . semicolan var inc_dec cb  (2)
+
+	semicolan  shift 17
+	.  error
+
+
+state 15
+	condition : var compare . val  (6)
+	condition : var compare . var  (7)
+
+	var  shift 18
+	val  shift 19
+	.  error
+
+
+state 16
+	for_stat : fo ob init semicolan semicolan var . cb  (1)
+
+	cb  shift 20
+	.  error
+
+
+state 17
+	for_stat : fo ob init semicolan condition semicolan . var inc_dec cb  (2)
+
+	var  shift 21
+	.  error
+
+
+state 18
+	condition : var compare var .  (7)
+
+	.  reduce 7
+
+
+state 19
+	condition : var compare val .  (6)
+
+	.  reduce 6
+
+
+state 20
+	for_stat : fo ob init semicolan semicolan var cb .  (1)
+
+	.  reduce 1
+
+
+state 21
+	for_stat : fo ob init semicolan condition semicolan var . inc_dec cb  (2)
+
+	inc_dec  shift 22
+	.  error
+
+
+state 22
+	for_stat : fo ob init semicolan condition semicolan var inc_dec . cb  (2)
+
+	cb  shift 23
+	.  error
+
+
+state 23
+	for_stat : fo ob init semicolan condition semicolan var inc_dec cb .  (2)
+
+	.  reduce 2
+
+
+12 terminals, 4 nonterminals
+8 grammar rules, 24 states

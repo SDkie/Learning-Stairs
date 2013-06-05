@@ -1,0 +1,6 @@
+ubuntu@ubuntu-Inspiron-3521:~$ cd Desktop/
+ubuntu@ubuntu-Inspiron-3521:~/Desktop$ cd shared-memory/
+ubuntu@ubuntu-Inspiron-3521:~/Desktop/shared-memory$ gcc sharedclient.c -o client
+ubuntu@ubuntu-Inspiron-3521:~/Desktop/shared-memory$ ./client
+  p    q    r    s    t    u    v    w    x    y    z  ubuntu@ubuntu-Inspiron-3521:~/Desktop/shared-memory$ 
+

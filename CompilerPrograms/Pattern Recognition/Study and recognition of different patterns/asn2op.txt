@@ -1,0 +1,23 @@
+Enter total no. of points6
+Enter x coord: 10
+Enter y coord: 10
+Enter x coord: 10
+Enter y coord: 20
+Enter x coord: 20
+Enter y coord: 20
+Enter x coord: 20
+Enter y coord: 40
+Enter x coord: 20
+Enter y coord: 50
+Enter x coord: 30
+Enter y coord: 30
+[[10, 10, 0], [10, 20, 0], [20, 20, 0], [20, 40, 0], [20, 50, 0], [30, 30, 0]]
+Following points are in a line:
+[20,20]
+[30,30]
+[10,10]
+Following points are in a line:
+[20,40]
+[20,50]
+[20,20]
+
